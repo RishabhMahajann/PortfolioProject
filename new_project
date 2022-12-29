@@ -1,118 +1,5 @@
--- Creating table covidvaccination
-
-create table covidvaccination
-(iso_code varchar(10) not null, 
- continent varchar(200),
- location varchar(200), 
- date date,
- population int
- ,total_tests int
- ,new_tests int
- ,total_tests_per_thousand numeric
- ,new_tests_per_thousand numeric
- ,new_tests_smoothed numeric
- ,new_tests_smoothed_per_thousand numeric
- ,positive_rate numeric
- ,tests_per_case numeric
- ,tests_units int
- ,total_vaccinations int
- ,people_vaccinated int
- ,people_fully_vaccinated int
- ,total_boosters int
- ,new_vaccinations int
- ,new_vaccinations_smoothed numeric
- ,total_vaccinations_per_hundred numeric
- ,people_vaccinated_per_hundred numeric
- ,people_fully_vaccinated_per_hundred numeric
- ,total_boosters_per_hundred numeric
- ,new_vaccinations_smoothed_per_million numeric
- ,new_people_vaccinated_smoothed numeric
- ,new_people_vaccinated_smoothed_per_hundred numeric(10,5)
- ,stringency_index numeric(9,4)
- ,population_density numeric(9,4)
- ,median_age numeric(4,1)
- ,aged_65_older numeric(9,4)
- ,aged_70_older numeric(9,4)
- ,gdp_per_capita numeric(10,4)
- ,extreme_poverty numeric(5,2)
- ,cardiovasc_death_rate numeric(10,5)
- ,diabetes_prevalence numeric(10,5)
- ,female_smokers numeric(10,5)
- ,male_smokers numeric(10,5)
- ,handwashing_facilities numeric(10,5)
- ,hospital_beds_per_thousand numeric(10,5)
- ,life_expectancy numeric(10,5)
- ,human_development_index numeric(10,5)
- ,excess_mortality_cumulative_absolute numeric(10,5)
- ,excess_mortality_cumulative  numeric(10,5)
- ,excess_mortality numeric(10,5)
-)
-tablespace pg_default;
-
-
-ALTER TABLE covidvaccination 
-    ALTER COLUMN total_tests_per_thousand TYPE numeric;
-Alter table covidvaccination
-	ALTER COLUMN tests_units TYPE varchar(100),
-	ALTER COLUMN population TYPE bigint,
-	ALTER COLUMN total_vaccinations TYPE bigint,
-	ALTER COLUMN people_vaccinated TYPE bigint,
-	ALTER COLUMN people_fully_vaccinated TYPE bigint,
-	ALTER COLUMN total_tests TYPE bigint,
-	ALTER COLUMN excess_mortality_cumulative_absolute type numeric(12,4),
-	Alter column total_boosters type bigint;
-select * from covidvaccination
--- Importing the data file
-
-
---Creating table coviddeaths
-create table coviddeath 
-(
-iso_code  varchar(10) not null,
-continent varchar(200),
- location varchar(200),
-date date,
-population bigint,
-total_cases bigint,
-new_cases bigint,
-new_cases_smoothed numeric(10,4) ,
-total_deaths bigint,
-new_deaths bigint,
-new_deaths_smoothed numeric(10,4),
-total_cases_per_million numeric(10,4),
-new_cases_per_million numeric(10,4),
-new_cases_smoothed_per_million numeric(10,4),
-total_deaths_per_million numeric(10,4),
-new_deaths_per_million numeric(10,4),
-new_deaths_smoothed_per_million numeric(10,4),
-reproduction_rate bigint,
-icu_patients bigint,
-icu_patients_per_million numeric(10,4),
-hosp_patients bigint,
-hosp_patients_per_million numeric(10,4),
-weekly_icu_admissions bigint,
-weekly_icu_admissions_per_million numeric(10,4),
-weekly_hosp_admissions bigint,
-weekly_hosp_admissions_per_million numeric(10,4)
-)
-tablespace pg_default;
-
-Alter table coviddeath
- alter column reproduction_rate type numeric(10,4),
- alter column new_cases_smoothed type numeric(15,4),
- alter column total_cases_per_million type numeric(15,4),
- alter column new_cases_per_million type numeric(15,4),
- alter column new_cases_smoothed_per_million type numeric(15,4),
- alter column total_deaths_per_million type numeric(15,4),
- alter column new_deaths_per_million type numeric(15,4),
- alter column new_deaths_smoothed_per_million type numeric(15,4),
- alter column icu_patients_per_million type numeric(15,4),
- alter column hosp_patients_per_million type numeric(15,4),
- alter column weekly_icu_admissions_per_million type numeric(15,4),
- alter column weekly_hosp_admissions_per_million type numeric(15,4),
- alter column total_deaths type numeric,
- alter column total_cases type numeric
- ;
+-- Covid 19 Data Exploration 
+-- Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types
 
 select * from coviddeath;
 
@@ -121,7 +8,6 @@ select location, date, total_cases, new_cases, total_deaths, population
 from coviddeath
 where continent is not null
 order by 1,2;
-
 
 select location, date, total_cases, total_deaths, population
 from coviddeath
